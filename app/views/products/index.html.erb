@@ -1,0 +1,31 @@
+<h1>This is index page</h1>
+<%= link_to "新增產品", new_product_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Photo</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @products.each do |product| %>
+    <tbody>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= product.price %></td>
+        <td>
+          <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
+        </td>
+        <td><%= product.description %></td>
+        <td>
+          <%= link_to "修改", edit_product_path(product) %> |
+          <%= link_to "刪除", product_path(product), method: :delete,
+          data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

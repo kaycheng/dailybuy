@@ -1,0 +1,27 @@
+<%= form_for obj do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+
+  <%= f.submit %>
+
+  <%= link_to "回前頁", products_path %>
+
+
+<% end %>

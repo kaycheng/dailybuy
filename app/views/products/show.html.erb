@@ -1,0 +1,5 @@
+<h1><%= @product.name %></h1>
+<%= image_tag(@product.photo, width: "200px") %>
+<p><%= @product.price %></p>
+<p><%= @product.description %></p>
+<%= link_to "回前頁", products_path %>
