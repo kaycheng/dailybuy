@@ -6,4 +6,9 @@
 <% @user.products.each do |product| %>
   <h4><%= product.name %></h4>
   <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
+  <% if current_user && current_user == product.user %>
+    <%= link_to "修改", edit_product_path(product) %> |
+    <%= link_to "刪除", product_path(product), method: :delete,
+                data: {confirm: "Are you sure?"} %>
+  <% end %>
 <% end %>

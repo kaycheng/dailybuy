@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     if @product.save
-      redirect_to products_path, notice: "新增成功"
+      redirect_to user_path(current_user), notice: "新增成功"
     else
       render "new", notice: "There are some errors."
     end
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   def update
     @product.user = current_user
     if @product.update(product_params)
-      redirect_to products_path, notice: "修改成功"
+      redirect_to user_path(current_user), notice: "修改成功"
     else
       render "edit", notice: "There are some errors."
     end  
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.user = current_user
     @product.destroy
-    redirect_to products_path, notice: "刪除成功"
+    redirect_to user_path(current_user), notice: "刪除成功"
   end
 
   private
