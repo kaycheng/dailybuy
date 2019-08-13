@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :show, :update, :destroy]
+  before_action :set_product, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -40,6 +40,17 @@ class ProductsController < ApplicationController
     @product.user = current_user
     @product.destroy
     redirect_to user_path(current_user), notice: "刪除成功"
+  end
+
+  def like
+    @product.likes.create!(user: current_user)
+    redirect_back(fallback_location: root_path) 
+  end
+
+  def unlike
+    likes = Like.where(product: @product, user: current_user)
+    likes.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private

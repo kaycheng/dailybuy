@@ -13,7 +13,10 @@
   <% @products.each do |product| %>
     <tbody>
       <tr>
-        <td><%= link_to product.name, product_path(product) %></td>
+        <td>
+          <%= link_to product.name, product_path(product) %>
+          <%= render partial: "like", locals: {obj: product} %>
+        </td>
         <td><%= product.price %></td>
         <td>
           <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
