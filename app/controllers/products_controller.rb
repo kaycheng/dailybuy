@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @products = Product.all
+    @products = Product.all.includes(:user)
   end
 
   def new
@@ -34,6 +34,10 @@ class ProductsController < ApplicationController
     else
       render "edit", notice: "There are some errors."
     end  
+  end
+
+  def show
+    @comment = Comment.new
   end
 
   def destroy

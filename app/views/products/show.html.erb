@@ -3,4 +3,22 @@
 <%= image_tag(@product.photo, width: "200px") %>
 <p><%= @product.price %></p>
 <p><%= @product.description %></p>
+
+<% @product.comments.each do |comment| %>
+  <h3><%= comment.user.username %></h3>
+  <p><%= simple_format comment.content %></p>
+  <p><%= time_ago_in_words(comment.created_at) %></p>
+  <% if current_user == @product.user %>
+    <%= link_to "刪除", product_comment_path(@product, comment), 
+    method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>
+
+<%= form_for [@product, @comment] do |f| %>
+  <%= f.label :content, placeholder: "留個言吧" %>
+  <%= f.text_area :content %>
+
+  <%= f.submit %>
+<% end %>
+
 <%= link_to "回前頁", products_path %>

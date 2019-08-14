@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :product
+
+  has_many :comments
 end

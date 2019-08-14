@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       post :like
       post :unlike 
     end
+
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :users, only: [:show, :edit, :update]
