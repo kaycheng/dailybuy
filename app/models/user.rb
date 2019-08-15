@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :liked_restaurants, through: :likes, source: :product
 
   has_many :comments
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
 end

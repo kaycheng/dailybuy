@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user
 
+  
+
   def edit
     unless current_user == @user
       redirect_to user_path(@user), notice: "Not allow"
