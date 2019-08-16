@@ -19,7 +19,7 @@
       <tr>
         <td>
           <%= link_to product.name, product_path(product) %>
-          <%= render partial: "like", locals: {obj: product} %>
+          <%= render partial: "shared/like", locals: {obj: product} %>
         </td>
         <td><%= product.price %></td>
         <td>

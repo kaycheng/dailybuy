@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user
 
-  
+  def show
+    @followers = @user.followers
+  end
 
   def edit
     unless current_user == @user
