@@ -1,1 +1,23 @@
-<h1>Hi</h1>
+<h1>後台管理系統</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>名稱</th>
+      <th>描述</th>
+      <th>新增時間</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= truncate(product.description, length: 20) %></td>
+        <td><%= time_ago_in_words(product.created_at) %></td>
+        <td><%= link_to "刪除", admin_product_path(product), method: :delete,
+            data: {confirm: "Are you sure?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
