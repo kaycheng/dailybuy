@@ -14,4 +14,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
   resources :followships, only: [:create, :destroy]
+
+  namespace :admin do
+    root "products#index"
+    resources :products, only: [:index, :destroy]
+    resources :users, only: [:index, :destroy]
+  end
 end
