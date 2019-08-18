@@ -21,7 +21,7 @@
       <%= link_to "登入", new_user_session_path %>
       <%= link_to "註冊", new_user_registration_path %>
     <% end %>
-    <% if current_user.admin? %>
+    <% if current_user&.admin? %>
       <%= link_to "後台", admin_root_path %>
     <% end %>
 
