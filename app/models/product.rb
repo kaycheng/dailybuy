@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
 
   has_many :comments, dependent: :destroy
+  
 
   def is_liked?(user)
     self.liked_users.include?(user)
