@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :set_product, except: [:index, :new, :create]
+  
   def index
     @products = Product.search(params[:term])
   end
@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :description, :price, :photo, :current_user, :term)
+    params.require(:product).permit(:name, :description, :price, :photo, :term)
   end
 
   def set_product

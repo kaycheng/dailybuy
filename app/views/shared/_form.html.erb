@@ -19,6 +19,12 @@
     <%= f.file_field :photo %>
   </div>
 
+  <div>
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.all, :id, :name,
+        {prompt: true}, {class: "form-control"} %>
+  </div>
+
   <%= f.submit %>
 
   <%= link_to "回前頁", products_path %>
