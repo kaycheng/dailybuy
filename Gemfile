@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem "mini_magick"
 gem 'devise'
 gem 'ffaker'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
