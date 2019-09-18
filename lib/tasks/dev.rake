@@ -24,4 +24,20 @@ namespace :dev do
     
     puts "Now we have #{User.count} users data."
   end
+
+  task fake_product: :environment do
+    Product.destroy_all
+
+    500.times do
+      product = Product.create!(
+        name: FFaker::Lorem.word,
+        description: FFaker::Lorem.paragraph,
+        price: rand(200..400),
+        user: User.all.sample,
+        category: Category.all.sample
+      )
+    end
+
+    puts "Create #{Product.count} products data"
+  end
 end

@@ -1,6 +1,6 @@
 <h1><%= @product.name %></h1>
 <%= render partial: "shared/like", locals: {obj: @product} %>
-<%= image_tag(@product.photo, width: "200px") %>
+<%= image_tag(@product.photo, width: "200px") if @product.photo.attached? %>
 <p><%= @product.price %></p>
 <p><%= @product.description %></p>
 
