@@ -5,28 +5,36 @@
   <%= submit_tag 'Search', name: nil %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Photo</th>
-      <th>Description</th>
-    </tr>
-  </thead>
+
+<div class="tile is-ancestor">
   <% @products.each do |product| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= link_to product.name, product_path(product) %>
-          <%= render partial: "shared/like", locals: {obj: product} %>
-        </td>
-        <td><%= product.price %></td>
-        <td>
-          <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
-        </td>
-        <td><%= product.description %></td>
-      </tr>
-    </tbody>
+    <div class="tile is-4 is-parent">
+      <%= link_to product_path(product) do %>
+        <article class="tile is-child box">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= product.name %></p>
+                <p class="subtitle is-6">NT: <%= product.price %></p>
+                <p><%= render partial: "shared/like", locals: {obj: product} %></p>
+              </div>
+            </div>
+
+            <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Phasellus nec iaculis mauris. <a>@bulmaio</a>
+              <br>
+              <time><%= time_ago_in_words(product.created_at) %></time>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </div>
   <% end %>
-</table>
+</div>
+

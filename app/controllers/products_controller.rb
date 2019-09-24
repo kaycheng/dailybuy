@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
   before_action :set_product, except: [:index, :new, :create]
   
   def index
-    @products = Product.search(params[:term])
+    if params[:term]
+      @products = Product.search(params[:term])
+    else
+      @products = Product.limit(5).all.order(created_at: :desc)
+    end
   end
 
   def new
