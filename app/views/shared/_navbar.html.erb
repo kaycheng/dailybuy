@@ -5,37 +5,49 @@
     <% end %>
   </div>
 
-  
-    <div class="navbar-menu">
+  <div class="navbar-menu">
+    <div class="navbar-end">
 
-      <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <% if current_user %>
-            <%= link_to current_user.username, user_path(current_user), class: "navbar-link" %>
-          
-            <div class="navbar-dropdown is-right">
-              <% if current_user&.admin? %>
-                <%= link_to "後台", admin_root_path, class: "navbar-item" %>
-              <% end %>
-              <%= link_to "修改個人資料", edit_user_path(current_user), class: "navbar-item" %>
-              <hr class="navbar-divider">
-              <%= link_to "登出", destroy_user_session_path, method: :delete,
-                            data: {confirm: "Are you sure?"}, class: "navbar-item" %>
-           
+      <%= form_tag(products_path, method: :get) do %>
+        <div class="navbar-item ">
+          <div class="field has-addons">
+            <div class="control">
+              <%= text_field_tag :term, params[:term], class: "input", placeholder: "搜尋商品" %>
             </div>
-
-          <% else %>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <%= link_to "登入", new_user_session_path, class: "button is-light" %>
-                <%= link_to "註冊", new_user_registration_path, class: "button is-primary" %>
-              </div>
+            <div class="control">
+              <%= submit_tag '搜尋', name: nil, class: "button is-dark" %>
             </div>
           </div>
-          <% end %>
         </div>
+      <% end %>
+    
+      <div class="navbar-item has-dropdown is-hoverable">
+        <% if current_user %>
+          <%= link_to current_user.username, user_path(current_user), class: "navbar-link" %>
+        
+          <div class="navbar-dropdown is-right">
+            <% if current_user&.admin? %>
+              <%= link_to "後台", admin_root_path, class: "navbar-item" %>
+            <% end %>
+            <%= link_to "修改個人資料", edit_user_path(current_user), class: "navbar-item" %>
+            <hr class="navbar-divider">
+            <%= link_to "登出", destroy_user_session_path, method: :delete,
+                          data: {confirm: "Are you sure?"}, class: "navbar-item" %>
+          
+          </div>
+
+        <% else %>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <%= link_to "登入", new_user_session_path, class: "button is-light" %>
+              <%= link_to "註冊", new_user_registration_path, class: "button is-primary" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
+  </div>
   </div>
 </nav>
