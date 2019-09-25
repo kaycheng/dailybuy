@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
     if params[:term]
       @products = Product.search(params[:term])
     else
-      @products = Product.limit(5).all.order(created_at: :desc)
+      @products = Product.order(created_at: :desc).limit(5)
     end
   end
 
