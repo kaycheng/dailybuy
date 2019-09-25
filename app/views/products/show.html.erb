@@ -1,8 +1,21 @@
-<h1><%= @product.name %></h1>
-<%= render partial: "shared/like", locals: {obj: @product} %>
-<%= image_tag(@product.photo, width: "200px") if @product.photo.attached? %>
-<p><%= @product.price %></p>
-<p><%= @product.description %></p>
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child">
+      <%= image_tag(@product.photo, class: "image") if @product.photo.attached? %>
+    </div>
+    <div class="tile is-child">
+      <h2 class="title is-2"><%= @product.name %></h2>
+      <p class="is-6">NT: <%= @product.price %></p>
+      <p><%= render partial: "shared/like", locals: {obj: @product} %></p>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child">
+      <p class="is-4"><%= @product.description %></p>
+    </div>
+  </div>
+</div>
+
 
 <% @product.comments.each do |comment| %>
   <h3><%= comment.user.username %></h3>
