@@ -16,7 +16,7 @@ class Product < ApplicationRecord
     if term
       where('name LIKE ?', "%#{term}%").order('id DESC')
     else
-      all.includes(:user).order('id DESC')
+      all.includes(:user).order('id DESC').limit(5)
     end
   end
 end
