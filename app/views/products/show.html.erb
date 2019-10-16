@@ -6,32 +6,60 @@
     <div class="tile is-child">
       <h2 class="title is-2"><%= @product.name %></h2>
       <p class="is-6">NT: <%= @product.price %></p>
+
       <p><%= render partial: "shared/like", locals: {obj: @product} %></p>
+      <% if current_user == @product.user %>
+      <%= link_to "修改", edit_product_path(@product), class: "button is-primary" %>
+      <%= link_to "刪除", product_path(@product), method: :delete, 
+            data: {confirm: "確定刪除？"}, class: "button is-danger" %>
+      <% end %>
     </div>
   </div>
   <div class="tile is-parent">
     <div class="tile is-child">
-      <p class="is-4"><%= @product.description %></p>
+      <p class="is-4"><%= simple_format(@product.description) %></p>
     </div>
   </div>
 </div>
 
+<div class="tile is-ancestor">
+  <div class="tile is-6 is-vertical is-parent">
 
-<% @product.comments.each do |comment| %>
-  <h3><%= comment.user.username %></h3>
-  <p><%= simple_format comment.content %></p>
-  <p><%= time_ago_in_words(comment.created_at) %></p>
-  <% if current_user == @product.user %>
-    <%= link_to "刪除", product_comment_path(@product, comment), 
-    method: :delete, data: {confirm: "Are you sure?"} %>
-  <% end %>
-<% end %>
+    <div class="tile is-child">
+      <% @product.comments.each do |comment| %>
+      <h4 class="subtitle is-4"><%= comment.user.username %></h4>
+      <p class="is-6"><%= simple_format comment.content %></p>
+      <p class="is-4"><%= time_ago_in_words(comment.created_at) %></p>
+      <% if current_user == @product.user %>
+      <%= link_to "刪除", product_comment_path(@product, comment), 
+              method: :delete, data: {confirm: "Are you sure?"} %>
+      <% end %>
+      <hr>
+      <% end %>
+    </div>
 
-<%= form_for [@product, @comment] do |f| %>
-  <%= f.label :content, placeholder: "留個言吧" %>
-  <%= f.text_area :content %>
+    <div class="tile is-child">
+      <%= form_for [@product, @comment] do |f| %>
+        <div class="field">
+          <%= f.label :content, placeholder: "留個言吧" %>
+          <%= f.text_area :content, class: 'textarea', rows: 5 %>
+        </div>
+        <%= f.submit '留言', class: 'button is-primary' %>
+        <%= link_to "回前頁", products_path, class: 'button is-dark' %>
+      <% end %>
 
-  <%= f.submit %>
-<% end %>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child">
+      <p class="is-6">
+        <%= link_to user_path(@product.user) do %>
+          <%= image_tag @product.user.avatar, class: 'user-avatar' %>
+          <%= @product.user.username.capitalize %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
 
-<%= link_to "回前頁", products_path %>
+  

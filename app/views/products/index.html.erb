@@ -1,4 +1,4 @@
-<h1 class="title">This is index page</h1>
+<h1 class="title">最新產品</h1>
 
 <div class="tile is-ancestor">
   <% @products.each do |product| %>
@@ -20,8 +20,7 @@
             </div>
 
             <div class="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris. <a>@bulmaio</a>
+              <p><%= truncate(product.description, length: 50) %></p>
               <br>
               <time><%= time_ago_in_words(product.created_at) %></time>
             </div>

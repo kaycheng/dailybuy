@@ -1,33 +1,36 @@
 <%= form_for obj do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class='field'>
+    <%= f.label :name, '產品名稱' %>
+    <%= f.text_field :name, class: 'input' %>
   </div>
 
-  <div>
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div>
-    <%= f.label :photo %>
-    <%= f.file_field :photo %>
-  </div>
-
-  <div>
+  <div class='field'>
     <%= f.label :category %>
     <%= f.collection_select :category_id, Category.all, :id, :name,
-        {prompt: true}, {class: "form-control"} %>
+          {prompt: true}, {class: "form-control"} %>
   </div>
 
-  <%= f.submit %>
+  <div class='field'>
+    <%= f.label :price, '價格' %>
+    <%= f.text_field :price, class: 'input' %>
+  </div>
 
-  <%= link_to "回前頁", products_path %>
+  <div class='field'>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'textarea', rows: 10 %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :photo %></br>
+    <div class="control">
+      <%= f.file_field :photo %>
+    </div>
+    <%= image_tag @product.photo.variant(resize: '250 x 250') if @product.photo.attached? %>
+  </div>
+
+  <%= f.submit '修改', class: 'button is-primary' %>
+
+  <%= link_to "回前頁", products_path, class: 'button is-dark' %>
 
 
 <% end %>

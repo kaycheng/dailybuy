@@ -3,3 +3,10 @@
  *= require_tree .
  *= require_self
  */
+
+ .user-avatar {
+   border-radius: 50%;
+   margin-right: 10px;
+   width: 33px;
+   height: 33px;
+ }
