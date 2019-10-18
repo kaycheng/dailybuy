@@ -1,22 +1,23 @@
-<h1>修改個人資料</h1>
+<h2 class="subtitle">修改個人資料</h2>
 
 <%= form_for @user do |f| %>
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+  <div class="field">
+    <%= f.label :username, '使用者名稱' %>
+    <%= f.text_field :username, class: 'input' %>
   </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <div class="field">
+    <%= f.label :email, 'Email' %>
+    <%= f.email_field :email, class: 'input' %>
   </div>
 
-  <div>
-    <%= f.label :avatar %>
-    <%= image_tag(@user.avatar, width: "200px") if @user.avatar.attached? %>
+  <div class="field">
+    <%= f.label :avatar, '大頭照' %>
+    
     <%= f.file_field :avatar %>
+    <%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
   </div>
 
-  <%= f.submit "修改資料" %>
-
+  <%= f.submit "修改個人資料", class: 'button is-primary' %>
+  <%= link_to '回到個人頁面', user_path(@user), class: 'button is-dark' %>
 <% end %>

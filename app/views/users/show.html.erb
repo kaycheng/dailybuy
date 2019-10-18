@@ -1,6 +1,8 @@
-<h1><%= @user.username %></h1>
+<%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
+
+<h2 class="subtitle"><%= @user.username %></h2>
 <%= render partial: "shared/follow", locals: { obj: @user } %>
-<%= image_tag(@user.avatar, width: "200px") if @user.avatar.attached? %>
+
 
 <%= link_to "新增產品", new_product_path %>
 
