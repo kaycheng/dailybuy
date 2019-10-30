@@ -1,7 +1,7 @@
 <% unless current_user == obj %>
   <% if current_user.following?(obj) %>
-    <%= link_to "Unfollow", followship_path(obj), method: :delete %>
+    <%= link_to "取消追蹤", followship_path(obj), method: :delete, class: "button is-grey is-small" %>
   <% else %>
-    <%= link_to 'Follow', followships_path(following_id: obj), method: :post %>
+    <%= link_to '追蹤', followships_path(following_id: obj), method: :post, class: "button is-primary is-small" %>
   <% end %>
 <% end %>

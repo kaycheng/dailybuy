@@ -1,25 +1,95 @@
-<%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
-
-<h2 class="subtitle"><%= @user.username %></h2>
-<%= render partial: "shared/follow", locals: { obj: @user } %>
-
-
-<%= link_to "新增產品", new_product_path %>
-
-<% @user.products.each do |product| %>
-  <h4><%= product.name %></h4>
-  <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
-  <% if current_user && current_user == product.user %>
-    <%= link_to "修改", edit_product_path(product) %> |
-    <%= link_to "刪除", product_path(product), method: :delete,
-                data: {confirm: "Are you sure?"} %>
-  <% end %>
-<% end %>
-
-<div>
-  <ul>
-    <% @followers.each do |follower| %>
-      <li><%= follower.username %></li>
+<h2 class="title">個人頁面</h2>
+<div class="columns">
+  <div class="column is-half">
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">
+              <%= @user.username.capitalize %>
+              <%= render partial: "shared/follow", locals: { obj: @user } %>
+            </p>
+          </div>
+        </div>
+      
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Phasellus nec iaculis mauris.
+          <br>
+          <p><%= time_ago_in_words(@user.created_at) %></p>
+        </div>
+      </div>
+    </div>
+    </br>
+    <% unless @followers.size == 0 %>
+      <div class="card">
+        <div class="card-content">
+          <% @followers.each do |follower| %>
+            <div class="media">
+              
+                <div class="media-left">
+                  <figure class="image is-24x24">
+                    <%= image_tag follower.avatar, class: 'is-rounded' if follower.avatar.attached? %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-5">
+                    <%= link_to follower.username.capitalize, user_path(follower) %>
+                  </p>
+                </div>
+              
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
+  <div class="column is-half">
+    <div class="card">
+      <div class="card-content">
+        <% if current_user == @user %>
+          <%= link_to "新增產品", new_product_path, class: "button is-primary" %>
+        <% else %>
+          <p>商品數：<%= @user.products.size %></p>
+        <% end %>
+        <% @user.products.each do |product| %>
+          <hr>
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= link_to product.name, product_path(product), class: 'has-text-dark' %></p>
+            </div>
+          </div>
+          
+          <div class="content">
+            <p><%= product.description %></p>
+            <br>
+            <time datetime="2016-1-1">
+              <%= time_ago_in_words(product.created_at) %>
+              <% if current_user && current_user == product.user %>
+                <%= link_to "修改", edit_product_path(product), class: 'button is-light is-small' %> 
+                <%= link_to "刪除", product_path(product), method: :delete,
+                    data: {confirm: "Are you sure?"}, class: 'button is-danger is-small' %>
+              <% end %>
+            </time>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+
+  
