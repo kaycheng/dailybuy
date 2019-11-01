@@ -15,7 +15,7 @@
       <div class="section">
         <div class="columns is-mobile">
           <div class="column is-10 is-offset-1">
-            <%= notice %>
+            <%= render partial: "shared/notice" if flash[:notice] %>
             <%= yield %>
           </div>
         </div>
