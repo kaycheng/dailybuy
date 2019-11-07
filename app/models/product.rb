@@ -16,7 +16,7 @@ class Product < ApplicationRecord
     if term
       where('name LIKE ?', "%#{term}%").order('id DESC')
     else
-      all.includes(:user).order('id DESC').limit(5)
+      all.includes(:user, :likes, :category).order('created_at DESC').limit(12)
     end
   end
 end
