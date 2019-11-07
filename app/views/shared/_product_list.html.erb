@@ -1,6 +1,6 @@
-<div class="tile is-ancestor">
+<div class="columns is-multiline is-mobile">
   <% @products.each do |product| %>
-    <div class="tile is-4 is-parent">
+    <div class="column is-one-quarter">
       <%= link_to product_path(product) do %>
         <article class="tile is-child box">
           <div class="card-image">
