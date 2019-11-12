@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_categories
   
   protected
 
@@ -11,5 +12,9 @@ class ApplicationController < ActionController::Base
     unless current_user.admin?
       redirect_to root_path, notice: "Not allow!"
     end
+  end
+
+  def set_categories
+    @categories = Category.all
   end
 end

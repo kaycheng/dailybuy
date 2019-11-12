@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.search(params[:term])
-    @categories = Category.all
   end
 
   def new
