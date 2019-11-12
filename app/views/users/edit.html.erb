@@ -15,7 +15,7 @@
     <%= f.label :avatar, '大頭照' %>
     
     <%= f.file_field :avatar %>
-    <%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
+    <%= avatar(@user, 50) %>
   </div>
 
   <%= f.submit "修改個人資料", class: 'button is-primary' %>

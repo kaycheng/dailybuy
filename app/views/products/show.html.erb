@@ -54,7 +54,7 @@
     <div class="tile is-child">
       <p class="is-6">
         <%= link_to user_path(@product.user) do %>
-          <%= image_tag @product.user.avatar, class: 'user-avatar' %>
+          <%= avatar(@product.user, 50) %>
           <%= @product.user.username.capitalize %>
         <% end %>
       </p>

@@ -5,8 +5,8 @@
       <div class="card-content">
         <div class="media">
           <div class="media-left">
-            <figure class="image is-48x48">
-              <%= image_tag @user.avatar.variant(resize: '250 x 250') if @user.avatar.attached? %>
+            <figure class="image">
+              <%= avatar(@user, 150) %>
             </figure>
           </div>
           <div class="media-content">
@@ -33,8 +33,8 @@
             <div class="media">
               
                 <div class="media-left">
-                  <figure class="image is-24x24">
-                    <%= image_tag follower.avatar, class: 'is-rounded' if follower.avatar.attached? %>
+                  <figure class="image">
+                    <%= avatar(follower, 50) %>
                   </figure>
                 </div>
                 <div class="media-content">
