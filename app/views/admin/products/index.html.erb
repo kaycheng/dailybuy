@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to product.name, product_path(product) %></td>
         <td><%= truncate(product.description, length: 20) %></td>
-        <td><%= time_ago_in_words(product.created_at) %></td>
+        <td><%= product.created_at.strftime("%Y/%m/%d %H:%M") %></td>
         <td><%= link_to "刪除", admin_product_path(product), method: :delete,
             data: {confirm: "Are you sure?"} %></td>
       </tr>

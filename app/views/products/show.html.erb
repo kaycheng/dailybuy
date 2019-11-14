@@ -32,7 +32,7 @@
         <%= comment.user.username %>
       </h4>
       <p class="is-6"><%= simple_format comment.content %></p>
-      <p class="is-4"><%= time_ago_in_words(comment.created_at) %></p>
+      <p class="is-4"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></p>
       <% if current_user == @product.user %>
       <%= link_to "刪除", product_comment_path(@product, comment), 
               method: :delete, data: {confirm: "Are you sure?"} %>

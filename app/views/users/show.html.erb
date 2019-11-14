@@ -21,7 +21,7 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Phasellus nec iaculis mauris.
           <br>
-          <p><%= time_ago_in_words(@user.created_at) %></p>
+          <p><%= @user.created_at.strftime("%Y/%m/%d") %></p>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
             <p><%= product.description %></p>
             <br>
             <time datetime="2016-1-1">
-              <%= time_ago_in_words(product.created_at) %>
+              <%= product.created_at.strftime("%Y/%m/%d %H:%M") %>
               <% if current_user && current_user == product.user %>
                 <%= link_to "修改", edit_product_path(product), class: 'button is-light is-small' %> 
                 <%= link_to "刪除", product_path(product), method: :delete,
