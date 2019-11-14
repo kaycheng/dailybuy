@@ -62,8 +62,8 @@
           <hr>
           <div class="media">
             <div class="media-left">
-              <figure class="image is-48x48">
-                <%= image_tag(product.photo, width: "200px") if product.photo.attached? %>
+              <figure class="image">
+                <%= photo(product, 50) %>
               </figure>
             </div>
             <div class="media-content">

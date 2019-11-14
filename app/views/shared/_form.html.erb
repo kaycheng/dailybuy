@@ -25,7 +25,7 @@
     <div class="control">
       <%= f.file_field :photo %>
     </div>
-    <%= image_tag @product.photo.variant(resize: '250 x 250') if @product.photo.attached? %>
+    <%= photo(@product, 200) %>
   </div>
 
   <%= f.submit class: "button is-primary" %>

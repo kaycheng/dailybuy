@@ -1,7 +1,7 @@
 <div class="tile is-ancestor">
   <div class="tile is-4 is-vertical is-parent">
     <div class="tile is-child">
-      <%= image_tag(@product.photo, class: "image") if @product.photo.attached? %>
+      <%= photo(@product, 250) %>
     </div>
     <div class="tile is-child">
       <h2 class="title is-2"><%= @product.name %></h2>
@@ -27,7 +27,10 @@
 
     <div class="tile is-child">
       <% @product.comments.each do |comment| %>
-      <h4 class="subtitle is-4"><%= comment.user.username %></h4>
+      <h4 class="subtitle is-4">
+        <%= avatar(comment.user, 50) %>
+        <%= comment.user.username %>
+      </h4>
       <p class="is-6"><%= simple_format comment.content %></p>
       <p class="is-4"><%= time_ago_in_words(comment.created_at) %></p>
       <% if current_user == @product.user %>
